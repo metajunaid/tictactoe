@@ -1,0 +1,151 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  background: #01b46a;
+  background: radial-gradient(#0fad64, #01b46a, #09ad77, #0ba382);
+  font-family: 'Mochiy Pop P One', sans-serif;
+}
+
+.wrap {
+  max-width: 400px;
+  margin: auto;
+  text-align: center;
+  overflow: hidden;
+}
+.menu {
+  margin-bottom: 1rem;
+}
+
+.button {
+  background: transparent;
+  border: 2px solid #01b46a;
+  border-radius: 50%;
+  height: 44px;
+  width: 44px;
+}
+
+.reset {
+  border: none;
+  color: #ec9513;
+  background: #2f71ff;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  height: 300px;
+  width: 90%;
+  min-width: 300px;
+  max-width: 400px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  font-family: 'Mochiy Pop P One', sans-serif;
+  transition: all 0.5s ease-in;
+  /* font-family: 'Architects Daughter', cursive; */
+}
+.grid.game-over {
+  transform: scale(0.5) translateY(-150px);
+  margin-bottom: -130px;
+}
+
+.cell {
+  height: 34%;
+  width: 31%;
+  /* border: 3px solid rgb(107, 252, 156); */
+  font-size: 4.5rem;
+  text-align: center;
+  line-height: 1;
+  transition: all 0.5s ease;
+}
+
+.hide-cell {
+  transform: scale(0);
+}
+
+.cell.x,
+.winner-label.x span {
+  color: #4a17a4;
+}
+
+.cell.o,
+.winner-label.o span {
+  color: #ae003b;
+}
+
+.cell-4,
+.cell-5,
+.cell-6 {
+  border-bottom: 5px solid rgb(107, 252, 156);
+  border-top: 5px solid rgb(107, 252, 156);
+}
+
+.cell-2,
+.cell-5,
+.cell-8 {
+  border-left: 5px solid rgb(107, 252, 156);
+  border-right: 5px solid rgb(107, 252, 156);
+}
+
+.won {
+  background-color: #01b46a;
+  animation: animateWin 1s ease-in infinite;
+}
+
+.winner-label {
+  font-size: 1.75rem;
+  color: #0753c5;
+  display: block;
+  transform: translateX(500px);
+  transition: transform 0.5s ease;
+}
+
+.winner-label span {
+  font-weight: bold;
+  font-size: 2rem;
+  text-shadow: 1px 1px 10px #f7fc00;
+}
+
+.restart {
+  background-color: #ec9513;
+  padding: 0.5rem 1rem;
+  font-family: inherit;
+  color: #030d92;
+  border: none;
+  overflow: hidden;
+  display: block;
+  border-radius: 4px;
+  cursor: pointer;
+  transform: translateX(-500px);
+  transition: transform 0.5s ease;
+}
+
+.winner-label.show {
+  margin-bottom: 10px;
+}
+.restart.show {
+  margin: 5px auto;
+}
+.restart.show,
+.winner-label.show {
+  transform: translateX(0);
+}
+
+@keyframes animateWin {
+  0%,
+  100% {
+    color: #e5f507;
+    text-shadow: 1px 1px 5px #fc4a04;
+  }
+  50% {
+    color: #f7a204;
+    text-shadow: -1px -1px 5px #fc0115;
+  }
+}
+
+@keyframes scaleIn {
+  100% {
+    transform: scale(1);
+  }
+}
