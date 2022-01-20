@@ -3,12 +3,8 @@
     <meta charset="UTF-8" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- <link
-      href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap"
-      rel="stylesheet"
-    /> -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Mochiy+Pop+P+One&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" type="text/css" href="styles.css" />
@@ -17,7 +13,6 @@
     <div class="menu">
       <button class="button reset">
         <svg
-          xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
           viewBox="0 0 24 24"
@@ -26,7 +21,6 @@
           stroke-width="3"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="feather feather-refresh-ccw"
         >
           <polyline points="1 4 1 10 7 10"></polyline>
           <polyline points="23 20 23 14 17 14"></polyline>
@@ -35,11 +29,65 @@
           ></path>
         </svg>
       </button>
+      <div class="play-with">
+        <div class="play-with-lbl">
+          <div class="help">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+          </div>
+          Playing with
+        </div>
+        <input type="checkbox" id="systemMode" class="systemMode" />
+        <label class="playMode" for="systemMode">
+          <div class="mode">Human</div>
+          <div class="mode">System</div>
+        </label>
+      </div>
+      <button class="button share">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="18" cy="5" r="3"></circle>
+          <circle cx="6" cy="12" r="3"></circle>
+          <circle cx="18" cy="19" r="3"></circle>
+          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+          <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+        </svg>
+      </button>
     </div>
     <div class="wrap">
       <div class="grid"></div>
       <div class="winner-label"></div>
       <button class="restart">Play Again</button>
+    </div>
+    <div class="overlay">
+      <div class="play-help">
+        <p>
+          <span>System Mode:</span> Play with your system. Your device will take
+          next turn after you.
+        </p>
+        <p><span>Human Mode :</span> Play offline with your friend.</p>
+        <button class="close-btn">Close</button>
+      </div>
     </div>
     <script src="script.js"></script>
   </body>

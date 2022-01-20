@@ -1,7 +1,13 @@
 (function () {
-  isSystemMode = true;
-  isSystemTurn = false;
-  newGameButton = document.querySelector('.reset');
+  let isSystemMode = true;
+  let isSystemTurn = false;
+  const newGameButton = document.querySelector('.reset');
+  const systemModeCheck = document.getElementById('systemMode');
+  systemModeCheck.checked = true;
+  systemModeCheck.addEventListener('change', function() {
+    isSystemMode = this.checked;
+    resetGame();
+  } )
   const grid = document.querySelector('.grid');
   const restart = document.querySelector('.restart');
   const winnerText = document.querySelector('.winner-label');
@@ -94,7 +100,7 @@
         break;
       }
     }
-    if (!index || cells[index]) {
+    if ((!index && index !== 0) || cells[index]) {
       index = getRandomIndex();
     }
     return index;
@@ -183,4 +189,14 @@
 
     grid.classList.remove('game-over');
   }
+
+  const helpBtn = document.querySelector('.help');
+  const overlay = document.querySelector('.overlay');
+  const closeBtn = document.querySelector('.close-btn');
+  helpBtn.addEventListener('click', () => {
+    overlay.style.display = 'flex';
+  });
+  closeBtn.addEventListener('click', () => {
+    overlay.style.display = 'none';
+  });
 })();
