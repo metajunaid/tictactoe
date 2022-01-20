@@ -1,4 +1,6 @@
 (function () {
+  isSystemMode = true;
+  isSystemTurn = false;
   newGameButton = document.querySelector('.reset');
   const grid = document.querySelector('.grid');
   const restart = document.querySelector('.restart');
@@ -37,17 +39,73 @@
   if (cellElems.length) {
     cellElems.forEach((e) => {
       e.addEventListener('click', function () {
-        cells[Array.from(cellElems).indexOf(e)] = currentPlayer;
-        console.log(cells);
-        if (!isGameOver && !this.innerHTML) {
-          e.classList.add(currentPlayer);
-          this.innerHTML = currentPlayer;
-          count++;
-          checkIsGameOver();
-          currentPlayer = currentPlayer === 'x' ? 'o' : 'x';
+        if (!isSystemTurn) {
+          cells[Array.from(cellElems).indexOf(e)] = currentPlayer;
+          if (!isGameOver && !this.innerHTML) {
+            e.classList.add(currentPlayer);
+            this.innerHTML = currentPlayer;
+            count++;
+            checkIsGameOver();
+            currentPlayer = currentPlayer === 'x' ? 'o' : 'x';
+            if (isSystemMode && !isGameOver) {
+              isSystemTurn = true;
+              setTimeout(playSystemMove, 200);
+            }
+          }
         }
       });
     });
+  }
+
+  function playSystemMove() {
+    let index;
+    if (count === 1) {
+      index = getRandomIndex();
+    } else {
+      index = getSystemPlayIndex();
+    }
+    cells[index] = 'o';
+    cellElems.item(index).innerHTML = 'o';
+    cellElems.item(index).classList.add('o');
+    count++;
+    checkIsGameOver();
+    setTimeout(() => {
+      currentPlayer = 'x';
+      isSystemTurn = false;
+    }, 100);
+  }
+
+  function getSystemPlayIndex() {
+    let index;
+    for (let i = 0; i < winningConditionSet.length; i++) {
+      const winset = winningConditionSet[i];
+      let cellValues = [];
+      let emptyCells = [];
+      winset.forEach((setIndex) => {
+        const cellValue = cells[setIndex];
+        if (cellValue) {
+          cellValues.push(cellValue);
+        } else {
+          emptyCells.push(setIndex);
+        }
+      });
+      if (emptyCells.length === 1 && cellValues[0] === cellValues[1]) {
+        index = emptyCells[0];
+        break;
+      }
+    }
+    if (!index || cells[index]) {
+      index = getRandomIndex();
+    }
+    return index;
+  }
+
+  function getRandomIndex() {
+    let index = Math.floor(Math.random() * 9);
+    if (!cells[index]) {
+      return index;
+    }
+    return getRandomIndex();
   }
 
   function checkIsGameOver() {
@@ -59,14 +117,23 @@
           .querySelector('.cell-' + (conditionIndex + 1))
           .classList.add('won');
       });
-      grid.classList.add('game-over');
       winnerText.innerHTML = 'Winner: <span>' + currentPlayer.toUpperCase();
       +'<span>';
       winnerText.classList.add(currentPlayer);
+    } else if (checkTieCondition()) {
+      isGameOver = true;
+      winnerText.innerHTML = 'Game Tie';
+    }
+    if (isGameOver) {
+      grid.classList.add('game-over');
       winnerText.classList.add('show');
       restart.classList.add('show');
-      console.log('Winnder =>', currentPlayer);
     }
+  }
+
+  function checkTieCondition() {
+    const nontEmptyCells = cells.filter((c) => c);
+    return nontEmptyCells.length === 9;
   }
 
   function checkWinnigCondition() {
@@ -100,13 +167,13 @@
 
   function initGame() {
     // console.log(cellElems)
+    isSystemTurn = false;
     matchedConditions = [];
     isGameOver = false;
     count = 0;
     currentPlayer = 'x';
     cells = [];
     Array.from(cellElems).map((e) => {
-      console.log(cellElems);
       e.innerHTML = '';
       // e.classList.remove('x');
       // e.classList.remove('o');
