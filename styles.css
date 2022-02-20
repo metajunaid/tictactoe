@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
 }
+
 body {
   background: #01b46a;
   background: radial-gradient(#0fad64, #01b46a, #09ad77, #0ba382);
@@ -8,14 +9,15 @@ body {
 }
 
 .wrap {
-  max-width: 400px;
+  max-width: 600px;
   margin: auto;
   text-align: center;
   overflow: hidden;
 }
+
 .menu {
   display: flex;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
   justify-content: space-between;
 }
 
@@ -25,6 +27,7 @@ body {
   flex-direction: column;
   text-align: center;
 }
+
 .menu .play-with-lbl {
   font-size: 12px;
   color: #fcfcfc;
@@ -34,10 +37,13 @@ body {
 .help {
   margin-right: 5px;
   color: #f7a204;
+  cursor: pointer;
 }
+
 .systemMode {
   display: none;
 }
+
 .playMode {
   margin-top: 10px;
   display: flex;
@@ -54,11 +60,13 @@ body {
   border-radius: 0 4px 4px 0;
   color: #87e41c;
 }
+
 .mode:nth-child(1) {
   border-radius: 4px 0 0 4px;
   color: #ffffff;
   background-color: #009688;
 }
+
 .systemMode:checked + label .mode:nth-child(2) {
   background-color: #009688;
   color: #ffffff;
@@ -92,6 +100,7 @@ body {
   font-family: "Mochiy Pop P One", sans-serif;
   transition: all 0.5s ease-in;
 }
+
 .grid.game-over {
   transform: scale(0.5) translateY(-150px);
   margin-bottom: -130px;
@@ -171,9 +180,11 @@ body {
 .winner-label.show {
   margin-bottom: 10px;
 }
+
 .restart.show {
   margin: 5px auto;
 }
+
 .restart.show,
 .winner-label.show {
   transform: translateX(0);

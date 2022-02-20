@@ -46,9 +46,9 @@
     cellElems.forEach((e) => {
       e.addEventListener('click', function () {
         if (!isSystemTurn) {
-          cells[Array.from(cellElems).indexOf(e)] = currentPlayer;
           if (!isGameOver && !this.innerHTML) {
             e.classList.add(currentPlayer);
+            cells[Array.from(cellElems).indexOf(e)] = currentPlayer;
             this.innerHTML = currentPlayer;
             count++;
             checkIsGameOver();
@@ -157,6 +157,7 @@
         winningCondition = true;
       }
       if (winningCondition) {
+        console.log(matchedConditions)
         break;
       }
     }
